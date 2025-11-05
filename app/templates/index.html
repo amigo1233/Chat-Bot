@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <title>Чат з нейронкою</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="logo-text">🤖 ChatBot</span>
+    </div>
+    <div class="topbar-right">
+      <span class="user-name">Вітаю, {{ username }}</span>
+      <button id="logout-btn">Вийти</button>
+    </div>
+  </div>
+
+  <div class="app" id="app" data-user-id="{{ user_id }}">
+    <header class="app__header">
+      <div class="brand">
+        <span class="dot"></span>
+        <h1>Чат</h1>
+      </div>
+      <button id="clear" class="btn btn--ghost" type="button" title="Очистити чат">Очистити</button>
+    </header>
+
+    <main class="app__main">
+      <!-- ЛИШЕ це вікно скролиться -->
+      <div id="chat" class="chat"></div>
+    </main>
+
+    <footer class="app__footer">
+      <form id="chat-form" class="composer" autocomplete="off">
+        <input id="msg" class="composer__input" placeholder="Напиши повідомлення…" />
+        <button class="btn btn--primary" type="submit">Надіслати</button>
+      </form>
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

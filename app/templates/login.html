@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Вхід у ChatBot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Вхід</h2>
+    <form method="POST">
+      <input type="text" name="username" placeholder="Логін" required>
+      <input type="password" name="password" placeholder="Пароль" required>
+      <button type="submit">Увійти</button>
+      <p>Немає акаунту? <a href="{{ url_for('main.register') }}">Зареєструватись</a></p>
+    </form>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  </div>
+</body>
+</html>

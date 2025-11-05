@@ -1,0 +1,7 @@
+flask==3.0.0
+groq==0.*
+python-dotenv==1.*
+flask-sqlalchemy==3.*
+sqlalchemy==2.*
+pymysql==1.*
+cryptography==43.*
