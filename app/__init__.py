@@ -12,7 +12,6 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = os.getenv("FLASK_SECRET_KEY", "dev-key")
 
-    # --- база ---
     DB_USER = "root"
     DB_PASS = "rootadmin123"
     DB_HOST = "127.0.0.1"
@@ -25,7 +24,6 @@ def create_app():
 
     db.init_app(app)
 
-    # --- маршрути ---
     from app.routes import main_bp
     app.register_blueprint(main_bp)
 

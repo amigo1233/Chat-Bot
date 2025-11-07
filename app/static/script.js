@@ -3,14 +3,12 @@ const formEl   = document.getElementById("chat-form");
 const inputEl  = document.getElementById("msg");
 const clearBtn = document.getElementById("clear");
 
-// ключ localStorage з урахуванням користувача
 function getLSKey() {
   const appRoot = document.getElementById("app");
   const uid = appRoot?.dataset?.userId;
-  return uid ? `chatHistory:${uid}` : "chatHistory"; // запасний варіант
+  return uid ? `chatHistory:${uid}` : "chatHistory";
 }
 
-// Збереження / завантаження
 function saveChat() {
   localStorage.setItem(getLSKey(), chatEl.innerHTML);
 }
@@ -25,7 +23,6 @@ function loadChat() {
 
 document.addEventListener("DOMContentLoaded", loadChat);
 
-// ===== Утиліти =====
 function makeBubble(role, text) {
   const wrap = document.createElement("div");
   wrap.className = `msg ${role}`;
@@ -39,7 +36,7 @@ function makeBubble(role, text) {
 
   const bubble = document.createElement("div");
   bubble.className = "bubble";
-  bubble.textContent = text; // безпечно (без HTML)
+  bubble.textContent = text;
 
   inner.appendChild(tag);
   inner.appendChild(bubble);
@@ -62,22 +59,18 @@ function appendAndGetBubble(role, text) {
   return bubble;
 }
 
-// ===== Відправка повідомлення =====
 formEl.addEventListener("submit", async (e) => {
   e.preventDefault();
   const text = (inputEl.value || "").trim();
   if (!text) return;
 
-  // додали твоє повідомлення
   append("user", text);
   inputEl.value = "";
   inputEl.focus();
 
-  // заблокуємо кнопку на час запиту
   const btn = formEl.querySelector("button");
   if (btn) btn.disabled = true;
 
-  // створимо порожню «бульбашку» бота і будемо оновлювати її
   const botBubble = appendAndGetBubble("bot", "…");
 
   try {
@@ -100,7 +93,6 @@ formEl.addEventListener("submit", async (e) => {
   }
 });
 
-// ===== Очистити чат =====
 if (clearBtn) {
   clearBtn.addEventListener("click", async () => {
     const ok = confirm("Очистити весь чат?");
@@ -127,7 +119,6 @@ if (clearBtn) {
   });
 }
 
-// ===== Логаут (якщо є кнопка) =====
 document.addEventListener("DOMContentLoaded", () => {
   loadChat();
 
@@ -138,6 +129,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
-
